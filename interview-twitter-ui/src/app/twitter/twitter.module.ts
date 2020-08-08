@@ -4,6 +4,7 @@ import {TwitterRoutingModule} from "./twitter-routing.module";
 import {MainComponent} from "./main/main.component";
 import {SharedModule} from "../shared/shared.module";
 import {TweetService} from "../services/tweet/tweet.service";
+import { UserProfileContainerComponent } from './user-profile/user-profile-container/user-profile-container.component';
 
 @NgModule({
   imports: [
@@ -13,6 +14,7 @@ import {TweetService} from "../services/tweet/tweet.service";
   ],
   declarations: [
     MainComponent,
+    UserProfileContainerComponent,
   ],
   providers: [TweetService]
 })
