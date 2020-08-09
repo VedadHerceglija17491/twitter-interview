@@ -33,8 +33,8 @@ export class UserProfileViewComponent implements OnInit {
       this.$follower = this.userService.fetchFollower();
       this.$following = this.userService.fetchFollowing();
 
-      this.$follower.subscribe(result => {this.numberOfFollower = result.length});
-      this.$following.subscribe(result => {this.numberOfFollowing = result.length});
+      this.$follower.subscribe(result => {this.numberOfFollower = result.length;});
+      this.$following.subscribe(result => {this.numberOfFollowing = result.length;});
       this.$tweets.subscribe(result => { this.numberOfTweets = result.length;});
     });
   }
