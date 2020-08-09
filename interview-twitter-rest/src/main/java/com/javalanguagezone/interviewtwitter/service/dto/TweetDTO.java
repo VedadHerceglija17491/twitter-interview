@@ -3,6 +3,8 @@ package com.javalanguagezone.interviewtwitter.service.dto;
 import com.javalanguagezone.interviewtwitter.domain.Tweet;
 import lombok.*;
 
+import java.util.SimpleTimeZone;
+
 import static lombok.AccessLevel.PRIVATE;
 
 @Getter
@@ -15,6 +17,8 @@ public class TweetDTO {
   public TweetDTO(Tweet tweet) {
     this.id = tweet.getId();
     this.content = tweet.getContent();
-    this.author = tweet.getAuthor().getUsername();
+    this.author = tweet.getAuthor().getUsername() + " " + tweet.getAuthor().getFullName();
+
+
   }
 }
