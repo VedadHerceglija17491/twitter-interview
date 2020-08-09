@@ -5,11 +5,5 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './user-profile-container.component.html',
   styleUrls: ['./user-profile-container.component.css']
 })
-export class UserProfileContainerComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+export class UserProfileContainerComponent {
 }
