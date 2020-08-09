@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import {TweetModel} from "../../../models/tweet.model";
+import {UserModel} from "../../../models/user.model";
 
 
 @Component({

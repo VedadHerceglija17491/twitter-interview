@@ -29,6 +29,7 @@ public class User implements UserDetails {
   @Column(unique = true)
   private String username;
 
+  @Column
   private String fullName;
 
   @JsonIgnore
