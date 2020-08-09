@@ -1,0 +1,8 @@
+<app-create-tweet></app-create-tweet>
+<app-user-profile-table [tweets]="$tweets | async" [numberOfTweets] = "numberOfTweets"
+                                                  [numberOfFollower] = "numberOfFollower"
+                                                  [numberOfFollowing] = "numberOfFollowing"
+                        [following]="$following | async"
+                        [follower]="$follower | async"
+>
+</app-user-profile-table>

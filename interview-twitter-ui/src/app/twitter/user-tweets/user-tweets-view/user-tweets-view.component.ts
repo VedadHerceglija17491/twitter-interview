@@ -24,5 +24,4 @@ export class UserTweetsViewComponent implements OnInit {
       this.$tweets = this.tweetService.fetchForUser(this.userName);
     });
   }
-
 }
