@@ -9,8 +9,7 @@ import {TweetModel} from "../../../models/tweet.model";
 })
 export class UserProfileTableComponent  {
   @Input() tweets: TweetModel[];
-  @Input() numberTweets: number;
-
-
-
+  @Input() numberOfTweets: number;
+  @Input() numberOfFollower: number;
+  @Input()  numberOfFollowing: number;
 }
