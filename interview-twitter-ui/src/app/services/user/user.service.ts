@@ -11,15 +11,7 @@ export class UserService {
   constructor(private http: HttpClient) {
   }
 
-  fetchFollower(): Observable<UserModel[]> {
-    return this.http.get<UserModel[]>(ENDPOINT_BASE + '/' + 'followers');
-  }
-
-  fetchFollowing(): Observable<UserModel[]> {
-    return this.http.get<UserModel[]>(ENDPOINT_BASE + '/' + 'following');
-  }
   fetchForUser() {
       return this.http.get<UserModel>(ENDPOINT_BASE + '/' + 'user');
     }
-
 }

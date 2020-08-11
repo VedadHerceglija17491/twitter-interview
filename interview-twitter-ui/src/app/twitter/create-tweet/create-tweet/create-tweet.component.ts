@@ -39,5 +39,4 @@ export class CreateTweetComponent {
   onTweetContentFocus() {
     this.tweetSavedStatus = {fail: false, success: false};
   }
-
 }

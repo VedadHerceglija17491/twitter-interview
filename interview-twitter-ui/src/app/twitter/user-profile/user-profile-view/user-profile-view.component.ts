@@ -17,7 +17,6 @@ export class UserProfileViewComponent implements OnInit {
 
   $user: Observable<UserModel>;
 
-  userName: string;
   numberOfTweets: number;
   numberOfFollower: number;
   numberOfFollowing: number;
@@ -25,14 +24,12 @@ export class UserProfileViewComponent implements OnInit {
   constructor(private tweetService: TweetService, private userService: UserService, private activatedRoute: ActivatedRoute) {}
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: Params) => {
-      this.userName = params['username'];
 
       this.$user = this.userService.fetchForUser();
 
       this.$user.subscribe(result => {this.numberOfFollowing = result.numberOfFollowing;
                                        this.numberOfFollower = result.numberOfFollower;
                                        this.numberOfTweets = result.numberOfTweets;});
-
     });
   }
 }

@@ -13,14 +13,15 @@ import static lombok.AccessLevel.PRIVATE;
 public class UserDTO {
   private Long id;
   private String username;
-  private Integer NumberOfFollower;
-  private Integer NumberOfFollowing;
-  private Integer NumberOfTweets;
+  private Integer numberOfFollower;
+  private Integer numberOfFollowing;
+  private Integer numberOfTweets;
+
   public UserDTO(User user) {
     this.id = user.getId();
     this.username = user.getUsername();
-    this.NumberOfFollower = user.getFollowers().size();
-    this.NumberOfFollowing = user.getFollowing().size();
-    this.NumberOfTweets = user.getTweets().size();
+    this.numberOfFollower = user.getFollowers().size();
+    this.numberOfFollowing = user.getFollowing().size();
+    this.numberOfTweets = user.getTweets().size();
   }
 }
