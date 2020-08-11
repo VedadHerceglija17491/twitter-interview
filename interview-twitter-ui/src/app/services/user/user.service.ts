@@ -18,5 +18,8 @@ export class UserService {
   fetchFollowing(): Observable<UserModel[]> {
     return this.http.get<UserModel[]>(ENDPOINT_BASE + '/' + 'following');
   }
+  fetchForUser() {
+      return this.http.get<UserModel>(ENDPOINT_BASE + '/' + 'user');
+    }
 
 }

@@ -9,9 +9,7 @@ import {UserModel} from "../../../models/user.model";
   styleUrls: ['./user-profile-table.component.css']
 })
 export class UserProfileTableComponent  {
-  @Input() tweets: TweetModel[];
-  @Input() follower: UserModel[];
-  @Input() following: UserModel[];
+  @Input() user: UserModel;
   @Input() numberOfTweets: number;
   @Input() numberOfFollower: number;
   @Input()  numberOfFollowing: number;

@@ -15,9 +15,7 @@ import {ActivatedRoute, Params} from "@angular/router";
 })
 export class UserProfileViewComponent implements OnInit {
 
-  $tweets: Observable<TweetModel[]>;
-  $follower: Observable<UserModel[]>;
-  $following: Observable<UserModel[]>;
+  $user: Observable<UserModel>;
 
   userName: string;
   numberOfTweets: number;
@@ -29,13 +27,12 @@ export class UserProfileViewComponent implements OnInit {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.userName = params['username'];
 
-      this.$tweets = this.tweetService.fetchForUser(this.userName);
-      this.$follower = this.userService.fetchFollower();
-      this.$following = this.userService.fetchFollowing();
+      this.$user = this.userService.fetchForUser();
 
-      this.$follower.subscribe(result => {this.numberOfFollower = result.length;});
-      this.$following.subscribe(result => {this.numberOfFollowing = result.length;});
-      this.$tweets.subscribe(result => { this.numberOfTweets = result.length;});
+      this.$user.subscribe(result => {this.numberOfFollowing = result.numberOfFollowing;
+                                       this.numberOfFollower = result.numberOfFollower;
+                                       this.numberOfTweets = result.numberOfTweets;});
+
     });
   }
 }
