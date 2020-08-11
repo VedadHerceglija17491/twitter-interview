@@ -17,8 +17,8 @@ import static lombok.AccessLevel.PRIVATE;
 @Getter
 @Setter
 @NoArgsConstructor(access = PRIVATE)
-@ToString(exclude = {"following", "followers", "tweets"})
-@EqualsAndHashCode(exclude = {"following", "followers","tweets", "fullName"})
+@ToString(exclude = {"following", "followers"})
+@EqualsAndHashCode(exclude = {"following", "followers"})
 public class User implements UserDetails {
   public static final List<SimpleGrantedAuthority> AUTHORITIES = singletonList(new SimpleGrantedAuthority("USER"));
 
@@ -29,9 +29,6 @@ public class User implements UserDetails {
   @Column(unique = true)
   private String username;
 
-  @Column
-  private String fullName;
-
   @JsonIgnore
   @ManyToMany
   private Set<User> following = new HashSet<>();
@@ -41,16 +38,11 @@ public class User implements UserDetails {
   private Set<User> followers = new HashSet<>();
 
   @JsonIgnore
-  @OneToMany(mappedBy = "author")
-  private Set<Tweet> tweets = new HashSet<>();
-
-  @JsonIgnore
   private String password;
 
-  public User(String username, String password, String fullName) {
+  public User(String username, String password) {
     this.username = username;
     this.password = password;
-    this.fullName = fullName;
   }
 
   public void addFollowing(User... users){
