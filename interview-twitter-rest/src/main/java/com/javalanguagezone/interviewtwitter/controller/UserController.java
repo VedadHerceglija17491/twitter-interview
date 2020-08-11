@@ -28,6 +28,7 @@ public class UserController {
   public Collection<UserDTO> following(Principal principal) {
     return userService.getUsersFollowing(principal);
   }
+
   @GetMapping("/user")
   public ResponseEntity<UserDTO> userDetails(Principal principal) {
     return ResponseEntity.ok(new UserDTO((User) userService.loadUserByUsername(principal.getName())));
