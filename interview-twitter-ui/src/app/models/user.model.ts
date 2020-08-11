@@ -1,4 +1,7 @@
 export interface UserModel {
   id: number,
-  userName: string
+  userName: string,
+  numberOfFollower: number,
+  numberOfFollowing: number,
+  numberOfTweets: number
 }
