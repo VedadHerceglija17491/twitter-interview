@@ -5,12 +5,14 @@ import com.javalanguagezone.interviewtwitter.service.UserService;
 import com.javalanguagezone.interviewtwitter.service.dto.RegistrationUserForm;
 import com.javalanguagezone.interviewtwitter.service.dto.UserDTO;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.security.Principal;
 import java.util.Collection;
 
@@ -39,8 +41,8 @@ public class UserController {
   }
 
   @PostMapping("/sign-up")
-  public ResponseEntity<?> createNewUser(@RequestBody @Validated RegistrationUserForm registrationUserForm) {
-    userService.createUser(registrationUserForm);
+  public ResponseEntity<?> createNewUser(@RequestBody @Valid RegistrationUserForm registrationUserForm, Errors errors) {
+    userService.createUser(registrationUserForm, errors);
     return ResponseEntity.accepted().build();
   }
 }

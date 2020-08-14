@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 
 import javax.transaction.Transactional;
@@ -56,9 +57,18 @@ public class UserService implements UserDetailsService {
   }
 
   @Transactional
-  public void createUser(@Validated RegistrationUserForm registrationUserForm) {
+  public void createUser(@Validated RegistrationUserForm registrationUserForm, Errors errors) {
+    if(errors.hasErrors()){
+      throw new UserService.InvalidUserException(registrationUserForm);
+    }
     userRepository.save(new User(registrationUserForm.getUserName(),
       registrationUserForm.getPassword(),
       registrationUserForm.getFullName()));
+  }
+  public static class InvalidUserException extends RuntimeException {
+
+    private InvalidUserException(RegistrationUserForm user) {
+      super("'" +  user.toString() + "'");
+    }
   }
 }
