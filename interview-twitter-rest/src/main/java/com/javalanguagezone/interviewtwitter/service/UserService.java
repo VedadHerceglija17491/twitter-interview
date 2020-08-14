@@ -2,11 +2,14 @@ package com.javalanguagezone.interviewtwitter.service;
 
 import com.javalanguagezone.interviewtwitter.domain.User;
 import com.javalanguagezone.interviewtwitter.repository.UserRepository;
+import com.javalanguagezone.interviewtwitter.service.dto.RegistrationUserForm;
 import com.javalanguagezone.interviewtwitter.service.dto.UserDTO;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 
 import javax.transaction.Transactional;
 import java.security.Principal;
@@ -28,7 +31,7 @@ public class UserService implements UserDetailsService {
   @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
     User user = getUser(username);
-    if(user == null)
+    if (user == null)
       throw new UsernameNotFoundException(username);
     return user;
   }
@@ -51,5 +54,21 @@ public class UserService implements UserDetailsService {
 
   private List<UserDTO> convertUsersToDTOs(Set<User> users) {
     return users.stream().map(UserDTO::new).collect(toList());
+  }
+
+  @Transactional
+  public void createUser(@Validated RegistrationUserForm registrationUserForm, Errors errors) {
+    if(errors.hasErrors()){
+      throw new UserService.InvalidUserException(registrationUserForm);
+    }
+    userRepository.save(new User(registrationUserForm.getUserName(),
+      registrationUserForm.getPassword(),
+      registrationUserForm.getFullName()));
+  }
+  public static class InvalidUserException extends RuntimeException {
+
+    private InvalidUserException(RegistrationUserForm user) {
+      super("'" +  user.toString() + "'");
+    }
   }
 }
